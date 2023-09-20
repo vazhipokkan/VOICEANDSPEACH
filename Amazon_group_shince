@@ -1,0 +1,36 @@
+# we shall use recursion to tackle the problem.
+# assume I have 2 parts of the sorted array of size n/2 each that has already been grouped. We shall write a procedure to merge these 2 separate groupings.
+# for example let's say my array is [1,1,2,3,4,4,4,5]; This procedure works on merging the two groupings [[1,1,2,3]] and [[4,4,4,5]] to get [[1,1,2,3,4,4,4,5]].
+def groupmerge(g1,g2):
+    l1=len(g1)-1
+    l2=len(g1[l1])-1
+    #g1[l1][l2] will be the last element of the last grouping in group1
+    m=g1[l1][l2]
+    n=g2[0][len(g2[0])-1]
+    if(abs(m-n) <=2):
+        for i in range(len(g2[0]):
+            g1[l1].append(g2[0][i])
+        g2.pop(0)
+    elif(abs(g2[0][0]-g1[l1][0]) <=2):
+        for i in range(len(g1[l1]):
+            g2[0].append(g1[l1][i]))
+        g1.pop(l1)
+    for i in range(g2):
+        g1.append(g2.pop(0))
+
+    return g1
+
+def shincefunction(A):
+    n=len(A)
+    if(n==1):
+        return [A]
+    
+    group1=shincefunction(A[0::n//2])
+    group2=shincefunction(A[(n//2)+1::n-1])
+    result=groupmerge(group1,group2)
+    return result
+
+l=[1,2,3,4,5]
+k=shincefunction(l)
+print("This is my grouping : ", k)
+print("Number of groupings = ",len(k))
