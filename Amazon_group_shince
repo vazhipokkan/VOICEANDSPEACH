@@ -1,17 +1,21 @@
 # we shall use recursion to tackle the problem.
 # assume I have 2 parts of the sorted array of size n/2 each that has already been grouped. We shall write a procedure to merge these 2 separate groupings.
 # for example let's say my array is [1,1,2,3,4,4,4,5]; This procedure works on merging the two groupings [[1,1,2,3]] and [[4,4,4,5]] to get [[1,1,2,3,4,4,4,5]].
+#abs() function is a builtin method in python to convert numbers to its absolute value. eg:: abs(-2)=2, abs(-6)=abs(6)=6
+#find the main() of this code
+
 def groupmerge(g1,g2):
     l1=len(g1)-1
     l2=len(g1[l1])-1
     #g1[l1][l2] will be the last element of the last grouping in group1
     m=g1[l1][l2]
     n=g2[0][len(g2[0])-1]
+    #n is the last element of the fist group in g2
     if(abs(m-n) <=2):
         for i in range(len(g2[0]):
             g1[l1].append(g2[0][i])
         g2.pop(0)
-    elif(abs(g2[0][0]-g1[l1][0]) <=2):
+    elif(abs(g2[0][0]-g1[l1][0]) <=2): #checking if the first elemnt of g2's fist group and first element of g1's last group differ by just two
         for i in range(len(g1[l1]):
             g2[0].append(g1[l1][i]))
         g1.pop(l1)
@@ -30,6 +34,7 @@ def shincefunction(A):
     result=groupmerge(group1,group2)
     return result
 
+#main function starts from here start reading from here for this to make sense.
 l=[1,2,3,4,5]
 k=shincefunction(l)
 print("This is my grouping : ", k)
